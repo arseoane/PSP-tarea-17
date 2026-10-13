@@ -23,7 +23,7 @@ public class ContadorCaracteres {
         }
 
         for (Character consonante : consonantes){
-            System.out.print(consonante);
+            caracterHilo(consonante, texto);
         }
 
     }
@@ -32,7 +32,7 @@ public class ContadorCaracteres {
         return texto.length();
     }
 
-    public int caracterHilo(Character c, String texto) {
+    public static Thread caracterHilo(Character c, String texto) {
         Thread hilo = new Thread(() -> {
             int contador = 0;
             for (int i = 0; i < texto.length(); i++) {
@@ -40,8 +40,9 @@ public class ContadorCaracteres {
                     contador++;
                 }
             }
+            System.out.println("La consonante '" + c + "' aparece " + contador + " veces en el texto.");
         });
         hilo.start();
-        return 0;
+        return hilo;
     }
 }
