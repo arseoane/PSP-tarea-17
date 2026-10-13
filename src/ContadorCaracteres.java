@@ -1,9 +1,8 @@
 import java.util.*;
-import java.io.*;
 
 
 public class ContadorCaracteres {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Scanner scanner = new Scanner(System.in);
         Character[] consonantes = new Character[5];
 
@@ -26,23 +25,24 @@ public class ContadorCaracteres {
             caracterHilo(consonante, texto);
         }
 
+        System.out.println("Total de consonantes: " + contadorCompartido);
+
     }
 
-    public static int contarCaracteres(String texto) {
-        return texto.length();
-    }
+    public static int contadorCompartido = 0;
 
-    public static Thread caracterHilo(Character c, String texto) {
+    public static void caracterHilo(Character c, String texto) throws InterruptedException {
         Thread hilo = new Thread(() -> {
             int contador = 0;
             for (int i = 0; i < texto.length(); i++) {
                 if (texto.charAt(i) == c) {
                     contador++;
+                    contadorCompartido++;
                 }
             }
             System.out.println("La consonante '" + c + "' aparece " + contador + " veces en el texto.");
         });
         hilo.start();
-        return hilo;
+        hilo.join();
     }
 }
