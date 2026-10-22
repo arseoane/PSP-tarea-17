@@ -14,7 +14,7 @@ public class ContadorCaracteres {
             System.out.print("Ingresa consonante (" + (consonantes.length - i) + " restantes): ");
             Character respuesta = scanner.next().charAt(0);
 
-            if (!Arrays.asList('a','e','i','o','u','A','E','I','O','U','1','2','3','4','5','6','7','8','9','0').contains(respuesta)){
+            if ("bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ".indexOf(respuesta) != -1){
                 consonantes[i] = respuesta;
             } else {
                 System.out.println("Error: Debe ingresar una consonante.");
